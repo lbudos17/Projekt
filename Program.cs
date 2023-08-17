@@ -1,71 +1,70 @@
 ﻿
+//using System.Security.Cryptography.X509Certificates;
+
+using System.Security.Cryptography.X509Certificates;
+
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-string [] posao = new string [3] { "programer", "devops", "dizajner" };
-string [] ucenik = new string [3] { "Pero peric", "Marko maric", "Maja perko"};
-int [] ocjena = new int [3] { 2, 3, 5};
+//1. a) Stvorite array s nizom brojeva. b) Stvorite objek u kojemu se nalazi funkcija koja kvadrira svaki broj i ispisuje rezultat
 
-Person user = new Person ("Matija", "Katić", 32, true, posao[0]);
-Person user2 = new Person ("Maja", "Perić", 23, false, posao[2]);
-Person user3 = new Person ("Pero", "Perić", 33, true, posao[1]);
-Person user4 = new Person ("Marko", "Perić", 34, false, posao[2]);
-Person user5 = new Person ("Domagoj", "Perić", 31, true, posao[1]);
+//int [] brojevi = new int [4] {2, 4, 6, 8};
 
-List<Person> userList = new List<Person> ();
-List<Person> userList2 = new List<Person> ();
+//Mnozenje rezultat = new Mnozenje ();
+//rezultat.kvadriranje(brojevi);
 
-userList.Add(user);
-userList.Add(user2);
-userList.Add(user3);
-
-userList2.Add(user4);
-userList2.Add(user5);
-
-PrintUser print = new PrintUser();
-print.printUsers(userList);
-print.printUsers(userList2);
-
-
-
-
-class Person {
-   public string ime;
-   public string prezime;
-   public int age;
-   public bool gender;
-   public string posao; 
-
-  public Person(string ime, string prezime, int age, bool gender, string posao) {
-    this.ime = ime;
-    this.prezime = prezime;
-    this.age = age;
-    this.gender = gender;
-    this.posao = posao;
-
-  } 
-}
- 
- class PrintUser {
-  public void printUsers(List<Person> users)  {
-     //users.ForEach(x => {
-     //Console.WriteLine("Ime i prezime: {0} {1}", x.ime, x.prezime);
-     //Console.WriteLine("Dob: {0}", x.age);
-     //Console.WriteLine("spol: {0}", x.gender ? "Muško" : "Žensko");
-     //Console.WriteLine("Posao: {0}", x.posao);
-
-
-      //});
-       foreach (Person x in users) {
-        Console.WriteLine( "Ime i prezime: {0}", x.ime, x.prezime);
-        Console.WriteLine( "Dob: {0}", x.age);
-        Console.WriteLine("Spol: {0}", x.gender ? "Muško" : "Žensko");
-        Console.WriteLine("Posao: {0}", x.posao);
-      }
-   }
-} 
+//class Mnozenje {
+  //public void kvadriranje (int[] data) {
+    //foreach(int x in data) {
+      //Console.WriteLine("Broj:" + x );
+      //Console.WriteLine(x * x);
+   // }
   
+  //}
+//}
 
-      
+
+//2. a) Stvorite Listu s popisom učenika (Student klasa i Lista<Student>) b) Stvorite objekt koji će funkciju koja će nam ispisivati korisnike
+
+Student ucenik = new Student ("Patricia", 15, "Ekonomska škola" );
+Student ucenik2 = new Student ("Leon", 16, "Poljoprivredna škola");
+Student ucenik3 = new Student ("Dominik",18, "Tehnička škola");
+Student ucenik4 = new Student ("Kiara", 17, "Opća gimnazija");
+
+List<Student> ucenikList = new List<Student> ();
+ucenikList.Add(ucenik);
+ucenikList.Add(ucenik2);
+ucenikList.Add(ucenik3);
+ucenikList.Add(ucenik4);
+
+PrintStudent lista = new PrintStudent();
+lista.PrintStudents(ucenikList);
+
+class Student {
+  public string ime;
+  public int age;
+  public string skola;
+
+  public Student (string ime, int age, string skola) {
+    this.ime = ime;
+    this.age = age;
+    this.skola = skola;
+
+  }
+}
+
+class PrintStudent {
+  public void PrintStudents (List<Student> ucenici) {
+    foreach (Student x in ucenici) {
+      Console.WriteLine("Ime: {0}", x.ime);
+      Console.WriteLine("Dob: {0}", x.age);
+      Console.WriteLine("Skola: {0}", x.skola);
+      Console.WriteLine("***********************************");
+    }
+    
+  }
+
+}
+
 
   
 
