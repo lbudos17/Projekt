@@ -1,90 +1,102 @@
-﻿Console.OutputEncoding = System.Text.Encoding.UTF8;
+﻿
+Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-string[] izvor = new string [3] { "biljna hrana", "hrana životinjskog podrijetla", "izlaganje suncu"};
+string [] posao = new string [3] { "programer", "devops", "dizajner" };
+string [] ucenik = new string [3] { "Pero peric", "Marko maric", "Maja perko"};
+int [] ocjena = new int [3] { 2, 3, 5};
+
+Person user = new Person ("Matija", "Katić", 32, true, posao[0]);
+Person user2 = new Person ("Maja", "Perić", 23, false, posao[2]);
+Person user3 = new Person ("Pero", "Perić", 33, true, posao[1]);
+Person user4 = new Person ("Marko", "Perić", 34, false, posao[2]);
+Person user5 = new Person ("Domagoj", "Perić", 31, true, posao[1]);
+
+List<Person> userList = new List<Person> ();
+List<Person> userList2 = new List<Person> ();
+
+userList.Add(user);
+userList.Add(user2);
+userList.Add(user3);
+
+userList2.Add(user4);
+userList2.Add(user5);
+
+PrintUser print = new PrintUser();
+print.printUsers(userList);
+print.printUsers(userList2);
+
+
+
+
+class Person {
+   public string ime;
+   public string prezime;
+   public int age;
+   public bool gender;
+   public string posao; 
+
+  public Person(string ime, string prezime, int age, bool gender, string posao) {
+    this.ime = ime;
+    this.prezime = prezime;
+    this.age = age;
+    this.gender = gender;
+    this.posao = posao;
+
+  } 
+}
+ 
+ class PrintUser {
+  public void printUsers(List<Person> users)  {
+     //users.ForEach(x => {
+     //Console.WriteLine("Ime i prezime: {0} {1}", x.ime, x.prezime);
+     //Console.WriteLine("Dob: {0}", x.age);
+     //Console.WriteLine("spol: {0}", x.gender ? "Muško" : "Žensko");
+     //Console.WriteLine("Posao: {0}", x.posao);
+
+
+      //});
+       foreach (Person x in users) {
+        Console.WriteLine( "Ime i prezime: {0}", x.ime, x.prezime);
+        Console.WriteLine( "Dob: {0}", x.age);
+        Console.WriteLine("Spol: {0}", x.gender ? "Muško" : "Žensko");
+        Console.WriteLine("Posao: {0}", x.posao);
+      }
+   }
+} 
+  
+
+      
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
  
 
-Vitamin user = new Vitamin("Vitamin A", "retinol", "vid, imunitet, reproduktivno zdravlje", "noćno sljepilo, sklonost infekcijama", izvor[1], 800, true);
-Vitamin user2 = new Vitamin("Vitamin C", "askorbinska kiselina", "antioksidacijsko djelovanje, obnova vitamina E, potpora imunološkom sustavu", "skorbut", izvor[0], 80, false);
-Vitamin user3 = new Vitamin("Vitamin D", "kalciferol", "regulacija krvnog tlaka, imunološki odgovor", "rahitis, psorijaza, multipla skleroza", izvor[2], 5, true);
-Vitamin user4 = new Vitamin("Vitamin E", "tokoferol", "održavanje zdravlja kože, krvožilnog i neurološkog sustava, sprječavanje oksidativnog stresa", "gubitak mišićne mase, anemija, pogoršan vid", izvor[0], 12, true);
-Vitamin user5 = new Vitamin("Vitamin H", "biotin", "proizvodnja energije, regulacija gena i stanična signalizacija", "gubitak kose, konjuktivitis, depresija, halucinacije", izvor[1], 50, false);
-
-Console.WriteLine("**********************************************************************");
-Console.WriteLine("Naziv: {0}", user.ime);
-Console.WriteLine("Drugi naziv: {0}", user.drugo);
-Console.WriteLine("Funkcije: {0}", user.funkcije);
-Console.WriteLine("Nedostatak u organizmu izaziva: {0}", user.nedostatak);
-Console.WriteLine("Glavni izvor: {0}", user.izvor);
-Console.WriteLine("Preporučeni dnevni unos u mcg: {0}", user.unos);
-Console.WriteLine("Vitamin topljiv u: {0}", user.topljivost ? "mastima" : "vodi" );
-
-Console.WriteLine("**********************************************************************");
-Console.WriteLine("Naziv: {0}", user2.ime);
-Console.WriteLine("Drugi naziv: {0}", user2.drugo);
-Console.WriteLine("Funkcije: {0}", user2.funkcije);
-Console.WriteLine("Nedostatak u organizmu izaziva: {0}", user2.nedostatak);
-Console.WriteLine("Glavni izvor: {0}", user2.izvor);
-Console.WriteLine("Preporučeni dnevni unos u mg: {0}", user2.unos);
-Console.WriteLine("Vitamin topljiv u: {0}", user2.topljivost ? "mastima" : "vodi" );
-
-Console.WriteLine("**********************************************************************");
-
-Console.WriteLine("**********************************************************************");
-Console.WriteLine("Naziv: {0}", user3.ime);
-Console.WriteLine("Drugi naziv: {0}", user3.drugo);
-Console.WriteLine("Funkcije: {0}", user3.funkcije);
-Console.WriteLine("Nedostatak u organizmu izaziva: {0}", user3.nedostatak);
-Console.WriteLine("Glavni izvor: {0}", user3.izvor);
-Console.WriteLine("Preporučeni dnevni unos u mcg: {0}", user3.unos);
-Console.WriteLine("Vitamin topljiv u: {0}", user3.topljivost ? "mastima" : "vodi" );
-
-Console.WriteLine("**********************************************************************");
-Console.WriteLine("Naziv: {0}", user4.ime);
-Console.WriteLine("Drugi naziv: {0}", user4.drugo);
-Console.WriteLine("Funkcije: {0}", user4.funkcije);
-Console.WriteLine("Nedostatak u organizmu izaziva: {0}", user4.nedostatak);
-Console.WriteLine("Glavni izvor: {0}", user4.izvor);
-Console.WriteLine("Preporučeni dnevni unos u mg: {0}", user4.unos);
-Console.WriteLine("Vitamin topljiv u: {0}", user4.topljivost ? "mastima" : "vodi" );
-
-Console.WriteLine("**********************************************************************");
-
-Console.WriteLine("Naziv: {0}", user5.ime);
-Console.WriteLine("Drugi naziv: {0}", user5.drugo);
-Console.WriteLine("Funkcije: {0}", user5.funkcije);
-Console.WriteLine("Nedostatak u organizmu izaziva: {0}", user5.nedostatak);
-Console.WriteLine("Glavni izvor: {0}", user5.izvor);
-Console.WriteLine("Preporučeni dnevni unos u mcg: {0}", user5.unos);
-Console.WriteLine("Vitamin topljiv u: {0}", user5.topljivost ? "mastima" : "vodi" );
-
-Console.WriteLine("**********************************************************************");
 
 
 
 
 
 
-class Vitamin {
-    public string ime;
-    public string drugo; 
-    public string funkcije;
-    public string nedostatak;
-    public string izvor;
-    public int unos;
-    public bool topljivost; //u mastima true, u vodi false
-
-    public Vitamin(string ime, string drugo, string funkcije, string nedostatak, string izvor, int unos, bool topljivost) {
-        this.ime = ime;
-        this.drugo = drugo;
-        this.funkcije = funkcije;
-        this.nedostatak = nedostatak;
-        this.izvor = izvor;
-        this.unos = unos;
-        this.topljivost = topljivost;
-    
-    }
 
 
 
-}
+
+
+
+
+
+
+
+
 
