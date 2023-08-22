@@ -76,9 +76,10 @@ namespace Program
     {
       bool running = true;
       do {
-        Console.WriteLine("Hotel");
-        Console.WriteLine("Apartman");
-        Console.WriteLine("Vikendica");
+        Console.WriteLine("\n************************************");
+        Console.WriteLine("1. Hotel");
+        Console.WriteLine("2. Apartman");
+        Console.WriteLine("3. Vikendica");
         Console.WriteLine("\nUpište broj klase smještaja koji želite odabrati.");
 
         string key = Console.ReadLine();
