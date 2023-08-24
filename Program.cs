@@ -2,12 +2,15 @@
   class Application {
     static void Main(string [] args) {
       MainMenu menu = new MainMenu ();
-      string prijevoz = menu.TravelVehicle();
-      string destinacija = menu.TravelDestination();
-      string smjestaj = menu.TravelAccommodation();
+      string klasa = menu.CharacterClass();
+      string ime = menu.CharacterName();
       
-     Travel player = new Travel (prijevoz, destinacija, smjestaj);
+      
+     Character player = new Character (klasa, ime);
       player.print();
+
+      BattleManager battle = new BattleManager();
+      battle.startBattle(player);
 
     }
   }    

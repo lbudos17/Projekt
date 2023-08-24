@@ -2,24 +2,24 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Program 
 {
-    class Travel 
+    class Character
     {
-        public string travelVehicle;
-        public string travelDestination;
-        public string travelAccommodation;
-        
+        public string characterClass;
+        public string characterName;
+        public int strength = 10;
+        public int magic = 0;
+               
 
-        public Travel (string travelVehicle, string travelDestination, string travelAccommodation) 
+        public Character (string characterClass, string characterName) 
         {
-            this.travelVehicle = travelVehicle;
-            this.travelDestination = travelDestination;
-            this.travelAccommodation = travelAccommodation;
-            
+            this.characterClass = characterClass;
+            this.characterName = characterName;
+                       
 
 
         }
         public void print() {
-            Console.WriteLine("Travel Vehicle: " + travelVehicle + "\nTravel Destination: " + travelDestination + "\nTravel Accommodation: " + travelAccommodation);
+            Console.WriteLine("Character class: " + characterClass + "\nCharacter name: " + characterName );
         }
 
     }
