@@ -1,26 +1,18 @@
-using System.Security.Cryptography.X509Certificates;
+namespace Program {
+    public class Product {
+        public int Number { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public int Quantity { get; set; }
 
-namespace Program 
-{
-    class Character
-    {
-        public string characterClass;
-        public string characterName;
-        public int strength = 10;
-        public int magic = 0;
-               
+        
 
-        public Character (string characterClass, string characterName) 
+        public Product ( int Number, string Name, double Price, int Quantity) 
         {
-            this.characterClass = characterClass;
-            this.characterName = characterName;
-                       
-
-
+            this.Number = Number;
+            this.Name = Name;
+            this.Price = Price;
+            this.Quantity = Quantity;
         }
-        public void print() {
-            Console.WriteLine("Character class: " + characterClass + "\nCharacter name: " + characterName );
-        }
-
     }
 }

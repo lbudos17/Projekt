@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Projekt\\Projekt.csproj": {}
+    "C:\\Projekt\\Projekt.csproj": {}
   },
   "projects": {
-    "c:\\Projekt\\Projekt.csproj": {
+    "C:\\Projekt\\Projekt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Projekt\\Projekt.csproj",
+        "projectUniqueName": "C:\\Projekt\\Projekt.csproj",
         "projectName": "Projekt",
-        "projectPath": "c:\\Projekt\\Projekt.csproj",
+        "projectPath": "C:\\Projekt\\Projekt.csproj",
         "packagesPath": "C:\\Users\\lbudo\\.nuget\\packages\\",
-        "outputPath": "c:\\Projekt\\obj\\",
+        "outputPath": "C:\\Projekt\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lbudo\\AppData\\Roaming\\NuGet\\NuGet.Config"
