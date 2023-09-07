@@ -14,5 +14,9 @@ namespace Program {
             this.Price = Price;
             this.Quantity = Quantity;
         }
+
+        public Product()
+        {
+        }
     }
 }
