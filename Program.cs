@@ -1,19 +1,29 @@
 ﻿namespace Program {
-  class Application {
+  class Application : Util {
     static void Main(string [] args) {
-      MainMenu menu = new MainMenu ();
-      string klasa = menu.CharacterClass();
-      string ime = menu.CharacterName();
-      
-      
-     Character player = new Character (klasa, ime);
-      player.print();
-
-      BattleManager battle = new BattleManager();
-      battle.startBattle(player);
+      IFizicka fizicka = new FizickeOsobe();
+      IOsoba pravna = new PravneOsobe();
+      ispis(pravna);
+      //Util.ispis(fizicka);
+      ispisOsobe(fizicka);
 
     }
-  }    
+  } 
+
+  class Util 
+  {
+    protected static void ispis(IOsoba osoba) 
+    {
+        Console.WriteLine(osoba.adresa);
+        Console.WriteLine(osoba.grad);
+        Console.WriteLine(osoba.telefon);
+    }
+    public static void ispisOsobe( IFizicka osoba) 
+    {
+        Console.WriteLine(osoba.ime);
+        Console.WriteLine(osoba.prezime);
+    }
+  }   
 }
 
 
