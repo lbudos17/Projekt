@@ -10,18 +10,20 @@ namespace Program {
         static void Main(string[] args) 
         
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Store();
 
             while (true)
             {
             
                 Console.WriteLine("Izbornik:");
-                Console.WriteLine("***********************************");
+                Console.WriteLine("\n***********************************");
                 Console.WriteLine("1. Popis proizvoda");
                 Console.WriteLine("2. Kupi proizvod");
                 Console.WriteLine("3. Dodaj novi proizvod");
-                Console.WriteLine("4. Izlaz iz aplikacije");
-                Console.WriteLine("***********************************");
+                Console.WriteLine("4. Dostava");
+                Console.WriteLine("5. Izlaz iz aplikacije");
+                Console.WriteLine("\n***********************************");
                 Console.Write("Unesite svoj izbor: ");
 
                 if (int.TryParse(Console.ReadLine(), out int choice))
@@ -38,6 +40,9 @@ namespace Program {
                             AddNewProduct();
                             break;
                         case 4:
+                            Delivery();
+                            break;
+                        case 5:
                             Console.WriteLine("Izlaz");
                             return;
                         default:
@@ -59,7 +64,7 @@ namespace Program {
             Product user = new Product ( 1, "Mlijeko", 1.65, 15);
             Product user2 = new Product ( 2, "Jaja", 1.80, 20);
             Product user3 = new Product ( 3, "Kruh", 1.50, 25);
-            Product user4 = new Product ( 4, "Čokolada", 2, 10);
+            Product user4 = new Product ( 4, "Sok", 2.10, 10);
             Product user5 = new Product ( 5, "Sir", 3.50, 50);
 
             storeProducts.Add(user);
@@ -80,7 +85,7 @@ namespace Program {
 
             foreach (var product in storeProducts)
             {
-                Console.WriteLine($"{product.Number}\t{product.Name}\t\t{product.Price}\t\t{product.Quantity}");
+                Console.WriteLine($"{product.Number}\t{product.Name}\t\t\t{product.Price} € \t\t{product.Quantity}");
             }
 
             Console.WriteLine("***********************************");
@@ -117,7 +122,7 @@ namespace Program {
             }
         }
 
-        static void BuyProduct() // kupovina proizvoda
+        static void BuyProduct() 
         {
             Console.WriteLine("\n***********************************");
             Console.WriteLine("Kupovina proizvoda:");
@@ -136,7 +141,11 @@ namespace Program {
                     if (quantity <= selectedProduct.Quantity)
                     {
                         Console.WriteLine("\n***********************************");
-                        Console.WriteLine($"Ukupni iznos bez PDV-a za {quantity} '{selectedProduct.Name}' je: {selectedProduct.Price * quantity}");
+                        double ukupnaCijena = selectedProduct.Price * quantity;
+                        Console.WriteLine($"Ukupni iznos bez PDV-a za {quantity} '{selectedProduct.Name}' je: {ukupnaCijena} €");
+                        double ukupniPdv = PDV.IzracunajPdv(selectedProduct);
+                        Console.WriteLine("\n***********************************");
+                        Console.WriteLine($"Cijena sa PDV-om: {ukupniPdv * quantity} €");
 
                         Console.WriteLine("-----------------------------------");
                         Console.WriteLine("Načini plaćanja:");
@@ -144,7 +153,7 @@ namespace Program {
                         Console.WriteLine("1. Kreditna kartica");
                         Console.WriteLine("2. Gotovina");
                         Console.WriteLine("3. Ček");
-                        Console.WriteLine("***********************************");
+                        Console.WriteLine("\n***********************************");
                         Console.Write("Unesite broj željenog načina plaćanja: ");
 
                         if (int.TryParse(Console.ReadLine(), out int paymentMenu))
@@ -164,34 +173,72 @@ namespace Program {
                                     Console.WriteLine("Nevažeći odabir plaćanja.");
                                     return;
                             }
-                            
+                            Console.WriteLine("***********************************");
+                        
+                            Console.WriteLine("-----------------------------------");
+                            Console.WriteLine("****** Račun ******");
+                            Console.WriteLine("-----------------------------------");
+                            Console.WriteLine($"Ime proizvoda: '{selectedProduct.Name}'");
+                            Console.WriteLine("-----------------------------------");
+                            ChoosePaymentMethod.Payment(ukupniPdv);
                     
                             selectedProduct.Quantity -= quantity;
                             Console.WriteLine($"Uspješno ste kupili {quantity} '{selectedProduct.Name}'.");
                         }
-                        else
-                        {
-                            Console.WriteLine("Nevažeći izbor plaćanja. Plaćanje otkazano.");
-                        }
+                       
                     }
                     else
                     {
                         Console.WriteLine($"Nedovoljna količina'{selectedProduct.Name}' u trgovini.");
                     }
                 }
-                else
-                {
-                    Console.WriteLine("Nevažeća količina. Unesite važeći broj.");
-                }
+               
             }
             else if (Number == 0)
             {
-                // odlazak nazad u main menu
+                // odlazak na glavni izbornik
             }
-            else
-            {
-                Console.WriteLine("Nevažeći broj proizvoda. Unesite važeći broj.");
-            }
+           
+        }
+
+        static void Delivery () 
+        {
+            Console.WriteLine("\n********************************************************");
+            Console.WriteLine("Unesite broj željenog načina dostave:");
+            Console.WriteLine("1.Dostava poštom");
+            Console.WriteLine("2.Dostava kurirskom službom");
+            Console.WriteLine("3.Osobno preuzimanje paketa");
+            Console.WriteLine("\n********************************************************");
+
+            int TypeDelivery = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Ime i prezime: ");
+            string Name = Console.ReadLine();
+            Console.WriteLine("Adresa dostave: ");
+            string Adress = Console.ReadLine();
+            DateTime currentDate = DateTime.Now;
+            string deliveryDate = currentDate.AddMonths(1).ToString("dd.MM.yyyy");
+            
+            Delivery dostava = null;
+        
+        if (TypeDelivery == 1)
+        {
+            dostava = new PostDelivery(Name, Adress, currentDate);
+
+
+        }
+        else if (TypeDelivery == 2)
+        {
+            dostava = new CourierDelivery (Name, Adress, currentDate);
+
+        }
+        else if (TypeDelivery == 3 )
+        {
+            dostava = new PickupDelivery (Name, Adress, currentDate);
+
+        }
+
+        dostava.Deliver();
+
         }
         
 
