@@ -65,49 +65,6 @@ namespace Program
 
       return name;
     } 
-    private string accommClass;
-    public string TravelAccommodation() 
-    {
-      bool running = true;
-      do {
-        Console.WriteLine("Hotel");
-        Console.WriteLine("Apartman");
-        Console.WriteLine("Vikendica");
-        Console.WriteLine("\nUpište broj klase smještaja koji želite odabrati.");
-
-        string key = Console.ReadLine();
-        int choice = key == "" ? 0 : int.Parse(key);
-
-        if (choice == 1) 
-        {
-          Console.WriteLine("\nOdabrali ste klasu: Hotel");
-          accommClass = "Hotel";
-          running = false;
-        }
-        else if (choice == 2) 
-        {
-          Console.WriteLine("\nOdabrali ste klasu: Apartman");
-          accommClass = "Apartman";
-          running = false;
-        }
-        else if (choice == 3) 
-        {
-          Console.WriteLine("\nOdabrali ste klasu: Vikendica");
-          accommClass= "Vikendica";
-          running = false;
-        }
-        else 
-        {
-          Console.WriteLine("\nNedozvoljeni unos! Probajte ponovno.");
-
-        }
-      }while (running);
-      return accommClass;
-    }  
-    
-
-   
-
   }
 
 }
