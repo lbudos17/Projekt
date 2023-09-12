@@ -6,6 +6,7 @@ namespace Program {
         static List<Product> storeProducts = new List<Product>();
         Product storeProduct = new Product ();
         static PaymentMethod ChoosePaymentMethod;
+        
 
         static void Main(string[] args) 
         
@@ -141,11 +142,11 @@ namespace Program {
                     if (quantity <= selectedProduct.Quantity)
                     {
                         Console.WriteLine("\n***********************************");
-                        double ukupnaCijena = selectedProduct.Price * quantity;
-                        Console.WriteLine($"Ukupni iznos bez PDV-a za {quantity} '{selectedProduct.Name}' je: {ukupnaCijena} €");
-                        double ukupniPdv = PDV.IzracunajPdv(selectedProduct);
+                        double totalPrice = selectedProduct.Price * quantity;
+                        Console.WriteLine($"Ukupni iznos bez PDV-a za {quantity} '{selectedProduct.Name}' je: {totalPrice} €");
+                        double totalPdv = PDV.CalculatePdv(selectedProduct);
                         Console.WriteLine("\n***********************************");
-                        Console.WriteLine($"Cijena sa PDV-om: {ukupniPdv * quantity} €");
+                        Console.WriteLine($"Cijena sa PDV-om: {totalPdv * quantity} €");
 
                         Console.WriteLine("-----------------------------------");
                         Console.WriteLine("Načini plaćanja:");
@@ -180,7 +181,7 @@ namespace Program {
                             Console.WriteLine("-----------------------------------");
                             Console.WriteLine($"Ime proizvoda: '{selectedProduct.Name}'");
                             Console.WriteLine("-----------------------------------");
-                            ChoosePaymentMethod.Payment(ukupniPdv);
+                            ChoosePaymentMethod.Payment(totalPdv);
                     
                             selectedProduct.Quantity -= quantity;
                             Console.WriteLine($"Uspješno ste kupili {quantity} '{selectedProduct.Name}'.");

@@ -3,19 +3,19 @@ namespace Program
     public class PDV
 {
 
-    public static double IzracunajPdv(Product storeProducts)
+    public static double CalculatePdv(Product storeProducts)
     {
         return storeProducts.Price  + (storeProducts.Price  * 0.25);
     }
 
-    public static double IzracunajUkupniPdv(List<Product> storeProducts)
+    public static double CalculateTotalPdv(List<Product> storeProducts)
     {
-        double ukupniPdv = 0;
+        double totalPdv = 0;
         foreach (var storeproduct in storeProducts)
         {
-            ukupniPdv += IzracunajPdv(storeproduct);
+            totalPdv += CalculatePdv(storeproduct);
         }
-        return ukupniPdv;
+        return totalPdv;
     }
 }
 }
