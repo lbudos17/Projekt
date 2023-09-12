@@ -146,7 +146,7 @@ namespace Program {
                         Console.WriteLine($"Ukupni iznos bez PDV-a za {quantity} '{selectedProduct.Name}' je: {totalPrice} €");
                         double totalPdv = PDV.CalculatePdv(selectedProduct);
                         Console.WriteLine("\n***********************************");
-                        Console.WriteLine($"Cijena sa PDV-om: {totalPdv * quantity} €");
+                        Console.WriteLine($"Cijena sa PDV-om od 25%: {totalPdv * quantity} €");
 
                         Console.WriteLine("-----------------------------------");
                         Console.WriteLine("Načini plaćanja:");
@@ -181,7 +181,7 @@ namespace Program {
                             Console.WriteLine("-----------------------------------");
                             Console.WriteLine($"Ime proizvoda: '{selectedProduct.Name}'");
                             Console.WriteLine("-----------------------------------");
-                            ChoosePaymentMethod.Payment(totalPdv);
+                            ChoosePaymentMethod.Payment(totalPdv * quantity);
                     
                             selectedProduct.Quantity -= quantity;
                             Console.WriteLine($"Uspješno ste kupili {quantity} '{selectedProduct.Name}'.");

@@ -5,6 +5,8 @@ namespace Program
 abstract class PaymentMethod 
 {
     public abstract void Payment (double amount);
+    
+    
             
     }
  class CardPayment : PaymentMethod {
